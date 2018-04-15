@@ -54,9 +54,9 @@ channelVis.prototype.drawShapes = function(){
     vis.channel.enter()
         .append('a')
         .attr('xlink:href', function(d, i){
-            if(i==0) { return "channela.html";}
-            if(i==1) { return "channelb.html";}
-            else { return "channelc.html";}
+            if(i==0) { return "html/channela.html";}
+            if(i==1) { return "html/channelb.html";}
+            else { return "html/channelc.html";}
         })
         .attr('target', "_blank")
         .append('rect')
