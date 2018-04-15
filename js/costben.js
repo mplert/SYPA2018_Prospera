@@ -14,6 +14,7 @@ costBenVis = function(_parentElement) {
     this.initNumbers();
 }
 
+
 // costBenVis.prototype.sliderVis = function() {
 //     var vis = this;
 //
@@ -25,6 +26,7 @@ costBenVis = function(_parentElement) {
 //
 //
 // }
+
 
 costBenVis.prototype.initNumbers = function() {
     var vis = this;

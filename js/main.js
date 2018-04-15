@@ -2,7 +2,12 @@
 var costBen, channel;
 
 // data for vis 1 - impact channel
-    // note: I don't think we need data set for this.
+    // creating instances for channel js file
+    channel = new channelVis("#channel-vis");
+
+    // duplicate the visualization on another page --> TBD
+    // channelA = new channelVis("#channel-a-vis");
+
 
 // data for vis 2 - cost benefits estimation
 
