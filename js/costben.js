@@ -94,7 +94,7 @@ costBenVis.prototype.initNumbers = function() {
 costBenVis.prototype.initVis = function() {
     var vis = this;
 
-    vis.margin = { bottom: 60, top: 200, left:80, right:10 };
+    vis.margin = { bottom: 60, top: 50, left:80, right:10 };
 
     vis.width = 700 - vis.margin.left - vis.margin.right;
     vis.height = 550- vis.margin.top - vis.margin.bottom;
@@ -173,17 +173,17 @@ costBenVis.prototype.initVis = function() {
         .attr('class', 'y-label');
 
     // adding title
-    vis.title = d3.select("#svg-cb").append('text')
-        .text('COST/BENEFIT PROJECTION')
-        .attr('x', vis.width/2 - 60)
-        .attr('y', 30)
-        .attr('class', 'title');
+    // vis.title = d3.select("#svg-cb").append('text')
+    //     .text('COST/BENEFIT PROJECTION')
+    //     .attr('x', vis.width/2 - 60)
+    //     .attr('y', 30)
+    //     .attr('class', 'title');
 
-    vis.subtitle = d3.select("#svg-cb").append('text')
-        .text('You may adjust the assumptions used in our estimates below.')
-        .attr('x', vis.width/2-80)
-        .attr('y', 30+18)
-        .attr('class', 'subtitle');
+    // vis.subtitle = d3.select("#svg-cb").append('text')
+    //     .text('You may adjust the assumptions used in our estimates below.')
+    //     .attr('x', vis.width/2-80)
+    //     .attr('y', 30+18)
+    //     .attr('class', 'subtitle');
 
     // legends
     vis.legendCost = d3.select('#svg-cb').append('circle')
@@ -211,9 +211,10 @@ costBenVis.prototype.initVis = function() {
         .attr('class', 'legend-text');
 
     // adding sliders
+
     // Transfer amount
         // add scale for transfer amount slider
-        vis.transferScale = d3.scaleLinear().domain([0,100]).range([0, vis.width/2]);
+        // vis.transferScale = d3.scaleLinear().domain([0,100]).range([0, vis.width/2]);
 
         // vis.transferSlider = d3.slide().axis(d3.svg.axis().orient("top").ticks(5)); //apparently this is not a d3 function, check v4 new command
             // vis.svg.append("g")
@@ -221,24 +222,24 @@ costBenVis.prototype.initVis = function() {
             // .attr("transform", "translate(" + margin.left + "," + height / 2 + ")");
 
         // adding slider titles
-        vis.transferSliderTitle = d3.select("#svg-cb").append("text")
-            .text("CHANGE IN TRANSFER LEVEL (%)")
-            .attr('x', vis.margin.left).attr('y', 20 + 55)
-            .attr('class', 'slider-text');
+        // vis.transferSliderTitle = d3.select("#svg-cb").append("text")
+        //     .text("CHANGE IN TRANSFER LEVEL (%)")
+        //     .attr('x', vis.margin.left).attr('y', 20 + 55)
+        //     .attr('class', 'slider-text');
 
     // unemployment
         // title
-        vis.umeployment = d3.select("#svg-cb").append("text")
-            .text("YOUTH UNEMPLOYMENT RATE (%)")
-            .attr('x', vis.margin.left).attr('y', 20 + 80)
-            .attr('class', 'slider-text');
+        // vis.umeployment = d3.select("#svg-cb").append("text")
+        //     .text("YOUTH UNEMPLOYMENT RATE (%)")
+        //     .attr('x', vis.margin.left).attr('y', 20 + 80)
+        //     .attr('class', 'slider-text');
 
     // entering labor market
         // title
-        vis.enterLabor = d3.select("#svg-cb").append("text")
-            .text("PROPORTION OF YOUTH ENTERING LABOR MARKET (%)")
-            .attr('x', vis.margin.left).attr('y', 20 + 105)
-            .attr('class', 'slider-text');
+        // vis.enterLabor = d3.select("#svg-cb").append("text")
+        //     .text("PROPORTION OF YOUTH ENTERING LABOR MARKET (%)")
+        //     .attr('x', vis.margin.left).attr('y', 20 + 105)
+        //     .attr('class', 'slider-text');
 
 }
 

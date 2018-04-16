@@ -12,6 +12,7 @@
     <link href='https://fonts.googleapis.com/css?family=Roboto:100,400,300,400italic,700' rel='stylesheet' type='text/css'>
     <link rel="stylesheet" href="css/bootstrap.min.css">
     <link rel="stylesheet" href="css/fontawesome-all.min.css">
+    <link rel="stylesheet" href="css/bootstrap-slider.min.css">
     <link rel="stylesheet" href="css/style.css">
 
 </head>
@@ -49,8 +50,24 @@
                         <li><a class="nav-list" href="html/channelc.html">Channel C: Supplementary Programs</a></li>
                     </ul>
                 </li>
-                <li class="active"><a href="index.html#page-solutions">Recommendations<span class="sr-only">(current)</span></a></li>
-                <li class="active"><a href="index.html#page-credits">Team <span class="sr-only">(current)</span></a></li>
+                <!--<li class="active"><a href="index.html#page-solutions">Recommendations<span class="sr-only">(current)</span></a></li>-->
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Recommendations<span class="caret"></span></a>
+                    <ul class="dropdown-menu" role="menu">
+                        <li><a class="nav-list" href="index.html#page-solutions">Proposed Recommendations</a></li>
+                        <li><a class="nav-list" href="index.html#page-cost-ben">Cost-Benefit Projection</a></li>
+                    </ul>
+                </li>
+                <!--<li class="active"><a href="index.html#page-credits">Team <span class="sr-only">(current)</span></a></li>-->
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">About<span class="caret"></span></a>
+                    <ul class="dropdown-menu" role="menu">
+                        <li><a class="nav-list" href="index.html#page-credits">Team</a></li>
+                        <li><a class="nav-list" target="_blank" href="https://www.dropbox.com/s/lyc38yaq6fc6ye7/20180311_SYPA_final.pdf?dl=0" >Full SYPA Report</a></li>
+                        <li><a class="nav-list" href="html/ref.html">Data and Reference List</a></li>
+                        <li><a class="nav-list" href="html/thank.html">Acknowledgements</a></li>
+                    </ul>
+                </li>
             </ul>
         </div>
     </div>
@@ -184,19 +201,63 @@
             <p class="main-text">
                 The chart below illustrates the costs and benefits of transfer increases – based on the findings of our study and a range of policy assumptions.
             </p>
+
+            <br>
+            <hr class="style1">
+            <br>
+
+            <h2 id="page-cost-ben" class="fig-label">COST-BENEFIT PROJECTION</h2>
         </div>
         <div class="col-md-2"></div>
 
     </div>
 
-    <br>
-    <hr class="style1">
-    <br>
+    <!--<br>-->
+    <!--<hr class="style1">-->
+    <!--<br>-->
+
+
+    <!--Adding the cost-ben vis-->
+    <!--@NOTE: add some changes on 4/15/42018 4.30pm-->
 
     <!--Column 1: running numbers-->
     <div id="solution-vis" class="row">
+        <div id="slider1" class="col-md-3">
+            <h5 class="slider-label">Youth Employment Rate: <span class="slider-value" id="sliderUnemVal">6</span><span class="slider-value">%</span></h5>
+            <input class="slider-indent" data-slider-id='ex1Slider' id="sliderUnem" type="text" data-slider-min="0" data-slider-max="100" data-slider-step="1" data-slider-value="6"/>
+        </div>
+        <div id="slider2" class="col-md-3">
+            <h5 class="slider-label">Change in wage level: <span class="slider-value" id="sliderWageVal">10</span><span class="slider-value">%</span></h5>
+            <input class="slider-indent" id="sliderWage" type="text" data-slider-min="0" data-slider-max="40" data-slider-step="1" data-slider-value="10"/>
+        </div>
+        <div id="slider3" class="col-md-4">
+            <h5 class="slider-label">Number of Youths per Household: <span class="slider-value" id="sliderNumYouthVal">1</span></h5>
+            <input class="slider-indent" id="sliderNumYouth" type="text" data-slider-min="1" data-slider-max="5" data-slider-step="1" data-slider-value="2"/>
+        </div>
+        <div id="button-col" class="col-md-2">
+            <br>
+            <button type="button" class="btn btn-success" id="updateBtn">UPDATE GRAPH</button>
+        </div>
+    </div>
+    <div class="row slider-row">
+        <!--<div class="col-md-1"></div>-->
+        <div class="col-md-3">
+            <!--<input class="slider-indent" data-slider-id='ex1Slider' id="sliderUnem" type="text" data-slider-min="0" data-slider-max="100" data-slider-step="1" data-slider-value="6"/>-->
+        </div>
+        <div class="col-md-3">
+            <!--<input class="slider-indent" id="sliderWage" type="text" data-slider-min="0" data-slider-max="40" data-slider-step="1" data-slider-value="10"/>-->
+        </div>
+        <div class="col-md-4">
+            <!--<input class="slider-indent" id="sliderNumYouth" type="text" data-slider-min="1" data-slider-max="5" data-slider-step="1" data-slider-value="2"/>-->
+        </div>
+        <div class="col-md-1">
+            <!--<button type="button" class="btn btn-success" id="updateBtn">UPDATE GRAPH</button>-->
+        </div>
+
+    </div>
+    <div id="solution-vis1" class="row">
         <div class="col-md-4" id="breakeven-vis">
-            <div id="slider"></div>
+            <br>
             <p class="cb-leading-text">Estimated Cumulative Cost <br> (6 years):</p>
             <div id="total-cost"></div>
             <!--<p id="total-cost" class="cb-numbers">000</p>-->
@@ -212,6 +273,9 @@
 
         <!--Column2: Line graph-->
         <div class="col-md-8">
+            <!--Adding slider 1: youth unemployment-->
+
+
             <div id="costben-vis"></div>
         </div>
     </div>
@@ -303,6 +367,8 @@
 <script src="js/lib/colorbrewer.js"></script>
 <script src="js/lib/d3.js"></script>
 <script src="js/lib/tooltipsy.source.js"></script>
+<script src="js/lib/bootstrap-slider.min.js"></script>
+
 
 <!-- Visualization objects -->
 <script src="js/costben.js"></script>
