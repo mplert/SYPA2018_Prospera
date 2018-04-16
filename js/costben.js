@@ -6,9 +6,12 @@
  *  @param _data            -- Array with the data set need for the projection
  */
 
-costBenVis = function(_parentElement) {
+costBenVis = function(_parentElement, _annualCost, _cumCost, _annualBen, _cumBen) {
     this.parentElement = _parentElement;
-    // this.data = _data;
+    this.annualCost = _annualCost;
+    this.cumCost = _cumCost;
+    this.annualBen = _annualBen;
+    this.cumBen = _cumBen;
 
     this.initVis();
     this.initNumbers();
@@ -33,7 +36,7 @@ costBenVis.prototype.initNumbers = function() {
 
     vis.start = 0,
         vis.duration = 7000,
-        vis.endCost = [1000000], vis.endBen = [1000000];
+        vis.endCost = [vis.cumCost], vis.endBen = [vis.cumBen];
 
     vis.nbHeight = 70, vis.nbWidth = 290;
 
@@ -51,15 +54,15 @@ costBenVis.prototype.initNumbers = function() {
         .attr('x', vis.nbWidth/2)
         .attr('y', vis.nbHeight*2/3)
         .transition().duration(5000);
-            // .tween("text", function(d){
-            //     var i = d3.interpolate(this.textContent, d),
-            //         prec = (d + "").split("."),
-            //         round = (prec.length > 1 )? Math.pow(10, prec[1].length) : 1;
-            //
-            //     return function(t) {
-            //         this.textContent = Math.round(i(t) * round) / round;
-            //     };
-            // });
+            .tween("text", function(d){
+                var i = d3.interpolate(this.textContent, d),
+                    prec = (d + "").split("."),
+                    round = (prec.length > 1 )? Math.pow(10, prec[1].length) : 1;
+
+                return function(t) {
+                    this.textContent = Math.round(i(t) * round) / round;
+                };
+            });
 
     // total-ben
     vis.svgTotalBen = d3.select('#total-ben').append('svg')
@@ -94,10 +97,10 @@ costBenVis.prototype.initNumbers = function() {
 costBenVis.prototype.initVis = function() {
     var vis = this;
 
-    vis.margin = { bottom: 60, top: 50, left:80, right:10 };
+    vis.margin = { bottom: 80, top: 25, left:80, right:10 };
 
     vis.width = 700 - vis.margin.left - vis.margin.right;
-    vis.height = 550- vis.margin.top - vis.margin.bottom;
+    vis.height = 450- vis.margin.top - vis.margin.bottom;
 
     vis.svg = d3.select('#costben-vis')
         .append('svg')

@@ -58,6 +58,7 @@ h4 {
 p {
     font-weight: 200;
     font-size: 18px;
+
 }
 
 p.big-para {
@@ -80,7 +81,7 @@ p.cb-leading-text {
 p.main-text {
     font-size: 18px;
     margin-top: 5px;
-    /*text-align: justify;*/
+    text-align: justify;
     line-height: 180%;
 }
 
@@ -107,17 +108,23 @@ p.intro-text {
 
 div#solution-vis{
     margin-top: 10px;
-    margin-bottom: 10px;
+    margin-bottom: 20px;
+}
+
+div#solution-vis1 {
+    /*margin-top: 30px;*/
+    padding: 40px;
+    margin-bottom: 20px;
 }
 
 .prospera {
     /*font-style: italic;*/
     font-size: 20px;
-    font-weight: 300;
+    font-weight: 400;
 }
 
 .text-highlight {
-    font-weight: 300;
+    font-weight: 400;
 }
 
 .text-bold {
@@ -127,29 +134,9 @@ div#solution-vis{
     font-weight: 300;
 }
 
-.slider-label {
-    font-weight: 200;
-    /*text-align: center;*/
-    font-size: 18px;
-    /*margin-top: 30px;*/
-    /*margin-bottom: 20px;*/
+.slider-selection {
+    background: #cccccc;
 }
-
-.slider-value {
-    font-weight: 400;
-    font-size: 20px;
-    color: #006d2c;
-}
-
-.slider-indent {
-    margin-left: 10px;
-    padding-left: 15px;
-}
-
-.slider-row {
-    margin-bottom: 20px;
-}
-
 /*Link*/
 a {
     font-weight: 200;
@@ -409,7 +396,7 @@ a.nav-list {
 #updateBtn {
     background-color: white;
     border: 1px solid #006d2c;
-    transition-duration: 0.4s;
+    transition-duration: 0.2s;
     color: #006d2c;
     border-radius: 10px;
     /*font-size: 18px;*/
@@ -421,7 +408,36 @@ a.nav-list {
     color: white;
 }
 
+.slider-label {
+    font-weight: 300;
+    /*text-align: center;*/
+    font-size: 17px;
+    /*margin-top: 30px;*/
+    margin-bottom: 20px;
+}
 
+.slider-value {
+    font-weight: 400;
+    font-size: 20px;
+    color: #006d2c;
+}
+
+.slider-row {
+    margin-bottom: 20px;
+}
+
+.slider-handle {
+    /*background: #C0392B;*/
+    /*border:2px solid #C0392B;*/
+    /*background: #96281B;*/
+    /*border:2px solid #96281B;*/
+    background: #4f4f4f;
+    border:2px solid #4f4f4f;
+    /*background: #006d2c;*/
+    /*border:2px solid #006d2c;*/
+
+
+}
 
 /*styling for channel figure*/
 div#channel-vis {
@@ -491,7 +507,7 @@ circle.source {
 .channel-note {
     text-anchor: middle;
     fill: #676767;
-    font-size: 10px;
+    font-size: 12px;
     font-weight: 200;
     letter-spacing: 0.5px;
     opacity: 0.5;

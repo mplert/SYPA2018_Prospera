@@ -54,9 +54,9 @@ channelVis.prototype.drawShapes = function(){
     vis.channel.enter()
         .append('a')
         .attr('xlink:href', function(d, i){
-            if(i==0) { return "html/channela.html";}
-            if(i==1) { return "html/channelb.html";}
-            else { return "html/channelc.html";}
+            if(i==0) { return "channela.html";}
+            if(i==1) { return "channelb.html";}
+            else { return "channelc.html";}
         })
         .attr('target', "_blank")
         .append('rect')
@@ -98,11 +98,11 @@ channelVis.prototype.drawShapes = function(){
         })
         .attr('title', function(d,i){
             if (i==0) {
-                return "<b>INCENTIVE EFFECTS</b><br> The effects of fulfillment of the conditions of the program.";
+                return "<b>INCENTIVE EFFECTS</b><br> Program conditions incentivize increased investment in children.";
             } if (i==1) {
-                return "<b>INCOME EFFECTS</b> <br>The effects of additional cash at the household level."
+                return "<b>INCOME EFFECTS</b> <br>Additional household income provides more resources to invest in children.";
             } else {
-                return "<b>SUPPLEMENTAL EFFECTS</b> <br> Through effects of supplementary job market programs."
+                return "<b>SUPPLEMENTAL EFFECTS</b> <br> Supplemental programs increase young adults' productivity.";
             }
         });
 
@@ -278,11 +278,11 @@ channelVis.prototype.drawShapes = function(){
     // !!!!!!! need to add action here: hovering and onclick!
 
     vis.channelCText = vis.svg
-        .append('text').text("Other programs offered by other")
+        .append('text').text("Supplementary programs offered via")
             .attr('class', 'channel-subtext')
             .attr('x', vis.width/2)
             .attr('y', vis.height*4/5)
-        .append('tspan').text("organizations (e.g. entrepreneurship,")
+        .append('tspan').text("other organizations (entrepreneurship,")
             .attr('x', vis.width/2)
             .attr('y', vis.height*4/5 +25)
         .append('tspan').text("job matching programs)")
