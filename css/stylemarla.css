@@ -1,0 +1,12 @@
+img.channels {
+    margin-top: 20px;
+    margin-bottom: 2px;
+}
+
+p.channel-caption {
+    font-weight: 200;
+    font-size: 15px;
+    line-height: 150%;
+    text-align: justify;
+
+}

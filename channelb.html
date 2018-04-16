@@ -13,6 +13,8 @@
     <link rel="stylesheet" href="css/bootstrap.min.css">
     <link rel="stylesheet" href="css/fontawesome-all.min.css">
     <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/stylemarla.css">
+
 </head>
 <body>
 <!--Navigation bar-->
@@ -34,12 +36,14 @@
                 <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">About<span class="caret"></span></a>
                     <ul class="dropdown-menu" role="menu">
-                        <li><a class="nav-list" href="html/prospera.html">Prospera Program and Impacts</a> </li>
-                        <li><a class="nav-list" target="_blank" href="https://www.dropbox.com/s/lyc38yaq6fc6ye7/20180311_SYPA_final.pdf?dl=0" >Full Report</a></li>
-                        <li><a class="nav-list" href="html/ref.html">Data and References</a></li>
+                        <li><a class="nav-list" target="_blank" href="https://www.dropbox.com/s/5k12ror4giipgaq/20180416_LertsuridejSpivack_Prospera.pdf?dl=0" >Full Report</a></li>
+                        <li><a class="nav-list" href="ref.html">Data and References</a></li>
                         <li><a class="nav-list" href="index.html#page-credits">The Team</a></li>
-                        <li><a class="nav-list" href="html/thank.html">Acknowledgements</a></li>
+                        <li><a class="nav-list" href="thank.html">Acknowledgements</a></li>
                     </ul>
+                </li>
+
+                <li><a class="active" href="prospera.html">Prospera Background and Impacts</a>
                 </li>
 
                 <!--<li class="active"><a href="#page-findings">Findings<span class="sr-only">(current)</span></a></li>-->
@@ -47,9 +51,9 @@
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Findings<span class="caret"></span></a>
                     <ul class="dropdown-menu" role="menu">
                         <li><a class="nav-list" href="index.html#page-findings">Summary of Findings</a></li>
-                        <li><a class="nav-list" href="html/channela.html">Channel A: Incentive Effects</a></li>
-                        <li><a class="nav-list" href="html/channelb.html">Channel B: Income Effects</a></li>
-                        <li><a class="nav-list" href="html/channelc.html">Channel C: Supplementary Programs</a></li>
+                        <li><a class="nav-list" href="channela.html">Channel A: Incentive Effects</a></li>
+                        <li><a class="nav-list" href="channelb.html">Channel B: Income Effects</a></li>
+                        <li><a class="nav-list" href="channelc.html">Channel C: Supplementary Programs</a></li>
                     </ul>
                 </li>
 
@@ -99,8 +103,29 @@
                 <a class="main-text" target="_blank"  href="https://doi.org/10.3386/w24248">previous </a>
                 <a class="main-text" target="_blank"  href="https://doi.org/10.3386/w24303"> studies </a>, which used birth cohorts and census data to show that exposure to Propsera increased
                 probabilituy of being as well as salaries.
+            </p>
+            <img class="channels" src="img/ChannelBreg.png" width="100%" height="auto">
+            <p  class="channel-caption">
+                These estimates were derived by constructing a measure of the total transfers that would
+                accrue to a young adult and their older siblings based on their birth years and genders, assuming all of the siblings had perfect
+                school and health visit attendance records. To estimate the effect of transfers on salaries of first and current jobs
+                an OLS model is used to regress monthly salary on this constructed transfer amount.
+                Dummy variables for all possible numbers of older male and female siblings are included,
+                as well as controls for other household and youth characteristics (household size, age, gender, currently being enrolled in
+                school, years of schooling, whether the youth has ever migrated within Mexico or to the US, and state fixed effects).
+                By controlling for the number of older male and female siblings and the youth’s birth year, the total transfer amount is
+                left to vary only in terms of older siblings’ birth years—the source of variation exploited in this model.
+                We use an OLS model to examine the effect on salary.
+                To estimate the effects of transfers on the binary outcome of having a formal labor contract
+                the same specification is implimented using a logit model. To interpret the results, we calculate the marginal
+                effect of additional transfers at the means of all variables in the model. <a class="big-para" href="ref.html">Data </a>
+                for this analysis come from the Encuesta Seguimiento a Jovenes de Hogares del Programa Oportunidades
+                and Encuesta de Caracteristicas Socioeconomicas de los Hogares. More details on the analysis are available
+                in the <a class="big-para" target="_blank" href="https://www.dropbox.com/s/5k12ror4giipgaq/20180416_LertsuridejSpivack_Prospera.pdf?dl=0">full report.
                 <br><br><br><br>
             </p>
+
+
         </div>
         <div class="col-md-1"></div>
     </div>
