@@ -3,14 +3,11 @@
 /*
  *  channelVis - Object constructor function
  *  @param _parentElement   -- HTML element in which to draw the visualization
- *  @param _data            -- Array with the data set need for the projection
  */
 
 channelVis = function(_parentElement) {
     this.parentElement = _parentElement;
-
     this.initVis();
-    // this.initNumbers();
 }
 
 channelVis.prototype.initVis = function(){
@@ -166,10 +163,13 @@ channelVis.prototype.drawShapes = function(){
     vis.channelC = vis.svg.append('rect')
         .attr('class', 'channel-c')
         .attr('x', (vis.width/3 + 20))
-        .attr('y', (vis.margin.top +60 + (vis.height/4 + gap)*2 + 20))
-        .attr('height', vis.height*0.23 - 40).attr('width', 370-40)
+        .attr('y', (vis.margin.top +60 + (vis.height/4 + gap)*2 + 30))
+        .attr('height', vis.height*0.23 - 60).attr('width', 370-40)
         .attr('rx', 15).attr('ry', 15)
-        .style('fill', "#DDA711");
+        .style('fill', "#DDA711")
+        .attr('title', function(d, i){
+            return "<b>SUPPLEMENTAL EFFECTS</b> <br> Supplemental programs increase young adults' productivity.";
+        });
 
 
     // Arrows
@@ -337,6 +337,22 @@ channelVis.prototype.drawShapes = function(){
 
     // initializing tool tips
     $('.channel').tooltipsy({
+        offset: [5, 0],
+        css: {
+            'padding': '10px',
+            'max-width': '200px',
+            'color': '#3D3D3D',
+            'background-color': 'rgba(240, 240, 240, 0.9)',
+            'border': '0.1px solid #656565',
+            'border-radius': '10px',
+            '-moz-box-shadow': '0 0 10px rgba(100, 100, 100, .5)',
+            '-webkit-box-shadow': '0 0 10px rgba(100, 100, 100, .5)',
+            'box-shadow': '0 0 10px rgba(100, 100, 100, .5)',
+            'text-shadow': 'none'
+        }
+    });
+
+    $('.channel-c').tooltipsy({
         offset: [5, 0],
         css: {
             'padding': '10px',

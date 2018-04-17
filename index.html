@@ -268,24 +268,24 @@
         <div class="col-md-1"></div>
         <!--Slider 1: Wage-->
         <div id="slider1" class="col-md-3">
-            <h5 class="slider-label">Change in Transfer: <span class="slider-value" id="sliderTransferVal">10</span><span class="slider-value">%</span></h5>
+            <h5 id="slider-transfer" class="slider-label">Change in Transfer: <span class="slider-value" id="sliderTransferVal">10</span><span class="slider-value">%</span></h5>
             <input id="sliderTransfer" type="text" data-slider-min="0" data-slider-max="40" data-slider-step="1" data-slider-value="10"/>
         </div>
         <!--Slider 2: Youth Unemployment Rate -->
         <div id="slider2" class="col-md-3">
-            <h5 class="slider-label">Youth Unemployment Rate: <span class="slider-value" id="sliderUnemVal">14</span><span class="slider-value">%</span></h5>
+            <h5 id="slider-unem" class="slider-label">Youth Unemployment Rate: <span class="slider-value" id="sliderUnemVal">14</span><span class="slider-value">%</span></h5>
             <input id="sliderUnem" type="text" data-slider-min="0" data-slider-max="50" data-slider-step="1" data-slider-value="14"/>
         </div>
         <!--Slider 3: No. of Youth in the HH-->
         <div id="slider3" class="col-md-3">
-            <h5 class="slider-label">No. of Youths per Household: <span class="slider-value" id="sliderNumYouthVal">1</span></h5>
-            <input id="sliderNumYouth" type="text" data-slider-min="1" data-slider-max="5" data-slider-step="1" data-slider-value="2"/>
+            <h5 id="slider-youth" class="slider-label">No. of Youths per Household: <span class="slider-value" id="sliderNumYouthVal">1</span></h5>
+            <input id="sliderNumYouth" type="text" data-slider-min="1" data-slider-max="5" data-slider-step="1" data-slider-value="1"/>
         </div>
         <!--Update button-->
         <div id="button-col" class="col-md-1">
             <br>
             <br>
-            <button type="button" class="btn btn-success" id="updateBtn">UPDATE GRAPH</button>
+            <button type="button" class="btn btn-success" id="updateBtn" onclick="costBen.wrangleData();costBen.hideVis();costBen.initNumbers();">UPDATE GRAPH</button>
         </div>
     </div>
 
@@ -295,10 +295,10 @@
             <br>
             <br>
 
-            <p class="cb-leading-text">Estimated Cumulative Cost <br>after 12 years</p>
+            <p class="cb-leading-text">Estimated Cumulative Cost <br>after 12 years (million MXN)</p>
             <div id="total-cost"></div>
             <!--<p id="total-cost" class="cb-numbers">000</p>-->
-            <p class="cb-leading-text">Estimated Cumulative Benefits <br>after 12 years</p>
+            <p class="cb-leading-text">Estimated Cumulative Benefits <br>after 12 years (million MXN)</p>
             <div id="total-ben"></div>
             <!--<p id="total-ben" class="cb-numbers">000</p>-->
             <p class="cb-leading-text">
@@ -356,8 +356,8 @@
         <div class="col-md-1"></div>
         <div class="col-md-4 div-center">
             <p class="p-small">
-                Maporn "Gaew" Lertsuridej is from Thailand and is currently an MPA/ID candidate at the Harvard Kennedy School of Government. She is currently interested in social protection policy and health system strengthening programs and holds a BS in Economics and a BS in Biology (Physiology) from the
-                <a target="_blank" class="p-small" href="https://www.washington.edu/">University of Washington.</a>
+                Maporn "Gaew" Lertsuridej is from Thailand and is currently an MPA/ID candidate at the Harvard Kennedy School of Government. She holds a BS in Economics and a BS in Biology (Physiology) from
+                <a target="_blank" class="p-small" href="https://www.washington.edu/">University of Washington.</a> She previously worked as Environmental consultant and she is currently interested in social and health policies.
                 </br>
             </p>
             <div class="fa-1x">

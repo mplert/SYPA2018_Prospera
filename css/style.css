@@ -101,7 +101,7 @@ p.intro-text {
 }
 
 .cb-numbers {
-    font-size: 60px;
+    font-size: 50px;
     text-align: center;
     font-weight: 200;
 }
@@ -220,9 +220,9 @@ img.intro {
     -webkit-filter: grayscale(100%);
 }
 
-#gaew:hover {
-    -webkit-filter: grayscale(5%);
-}
+/*#gaew:hover {*/
+    /*-webkit-filter: grayscale(5%);*/
+/*}*/
 
 hr.style2 {
     border: 0;
@@ -411,7 +411,7 @@ a.nav-list {
 .slider-label {
     font-weight: 300;
     /*text-align: center;*/
-    font-size: 17px;
+    font-size: 15px;
     /*margin-top: 30px;*/
     margin-bottom: 20px;
 }
@@ -435,7 +435,36 @@ a.nav-list {
     border:2px solid #4f4f4f;
     /*background: #006d2c;*/
     /*border:2px solid #006d2c;*/
+}
 
+.line-cost {
+    stroke: #C0392B;
+    stroke-width: 2.5px;
+    fill: none;
+}
+
+.line-ben {
+    stroke: #1F3A93;
+    stroke-width: 2.5px;
+    fill: none;
+}
+
+.point-cost {
+    fill: #C0392B;
+    stroke: #C0392B;
+    stroke-width: 0.1px;
+}
+
+.point-ben {
+    fill: #1F3A93;
+    stroke: #1F3A93;
+    stroke-width: 0.1px;
+}
+
+.axis {
+    font-size: 12px;
+    font-family: 'Roboto', sans-serif;
+    font-weight:100;
 
 }
 
@@ -553,4 +582,22 @@ rect.channel-c {
 }
 
 
+/*image for channel */
 
+img.channels {
+    margin-top: 20px;
+    margin-bottom: 2px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 80%;
+    height: auto;
+}
+
+p.channel-caption {
+    font-weight: 200;
+    font-size: 15px;
+    line-height: 150%;
+    text-align: justify;
+
+}

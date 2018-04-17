@@ -6,93 +6,14 @@
  *  @param _data            -- Array with the data set need for the projection
  */
 
-costBenVis = function(_parentElement, _annualCost, _cumCost, _annualBen, _cumBen) {
+costBenVis = function(_parentElement) {
     this.parentElement = _parentElement;
-    this.annualCost = _annualCost;
-    this.cumCost = _cumCost;
-    this.annualBen = _annualBen;
-    this.cumBen = _cumBen;
 
     this.initVis();
     this.initNumbers();
 }
 
-
-// costBenVis.prototype.sliderVis = function() {
-//     var vis = this;
-//
-//     vis.svgSlider = d3.select('#slider').append('svg')
-//         .attr('width', 200)
-//         .attr('height', 200)
-//         .attr('id', 'svg-slider')
-//         .attr('align', 'center');
-//
-//
-// }
-
-
-costBenVis.prototype.initNumbers = function() {
-    var vis = this;
-
-    vis.start = 0,
-        vis.duration = 7000,
-        vis.endCost = [vis.cumCost], vis.endBen = [vis.cumBen];
-
-    vis.nbHeight = 70, vis.nbWidth = 290;
-
-    // total-cost
-    vis.svgTotalCost = d3.select('#total-cost').append('svg')
-        .attr('id', 'svg-cost').attr('class', 'svg-nb')
-        .attr('height', vis.nbHeight).attr('width', vis.nbWidth)
-        .attr('align', 'center');
-
-    vis.svgTotalCost.selectAll("#cb-cost")
-        .data(vis.endCost).enter()
-        .append('text').text(vis.start)
-        .attr('id', '#cb-cost')
-        .attr('class', 'cb-numbers')
-        .attr('x', vis.nbWidth/2)
-        .attr('y', vis.nbHeight*2/3)
-        .transition().duration(5000);
-            .tween("text", function(d){
-                var i = d3.interpolate(this.textContent, d),
-                    prec = (d + "").split("."),
-                    round = (prec.length > 1 )? Math.pow(10, prec[1].length) : 1;
-
-                return function(t) {
-                    this.textContent = Math.round(i(t) * round) / round;
-                };
-            });
-
-    // total-ben
-    vis.svgTotalBen = d3.select('#total-ben').append('svg')
-        .attr('id', 'svg-ben').attr('class', 'svg-nb')
-        .attr('height', vis.nbHeight).attr('width', vis.nbWidth)
-        .attr('align', 'center');
-
-    vis.svgTotalBen.selectAll(".cb-numbers").data(vis.endBen).enter()
-        .append('text').text(vis.start)
-        .attr('class', 'cb-numbers')
-        .attr('x', vis.nbWidth/2)
-        .attr('y', vis.nbHeight*2/3)
-        .transition().duration(5000)
-        .tween("text", function(d){
-            var i = d3.interpolate(this.textContent, d),
-                prec = (d + "").split("."),
-                round = (prec.length > 1 )? Math.pow(10, prec[1].length) : 1;
-
-            return function(t) {
-                this.textContent = Math.round(i(t) * round) / round;
-            };
-        });
-
-    // number of year to break even
-    vis.svgYears = d3.select('#cb-years').append('svg')
-        .attr('id', 'svg-years').attr('class', 'svg-nb')
-        .attr('height', vis.nbHeight).attr('width', vis.nbWidth)
-        .attr('align', 'center');
-
-}
+/* ACTUAL LINE GRAPH FOR COST-BEN ESTIMATION */
 
 costBenVis.prototype.initVis = function() {
     var vis = this;
@@ -112,24 +33,18 @@ costBenVis.prototype.initVis = function() {
             .attr('transform', 'translate('+ vis.margin.left +',' + vis.margin.top +')');
 
     // adding axes and scales for the line graph
-    vis.yMax = 0;
-    vis.yMin = 500;
-    vis.yearMin = 0;
-    vis.yearMax = 12;
-
     vis.x = d3.scaleLinear()
-        .domain([0, 12])
+        // .domain([0, 12])
         .range([0, vis.width]);
 
     vis.y = d3.scaleLinear()
-        .domain([0, 500])
+        // .domain([0, 60000])
         .range([vis.height, 0]);
 
     vis.xAxis = d3.axisBottom().scale(vis.x)
-        .ticks(6);
+        .ticks(12);
 
-    vis.yAxis = d3.axisLeft().scale(vis.y)
-        .ticks(5);
+    vis.yAxis = d3.axisLeft().scale(vis.y);
 
     vis.addX = vis.svg.append('g')
         .attr('class', 'x-axis axis')
@@ -137,29 +52,6 @@ costBenVis.prototype.initVis = function() {
 
     vis.addY = vis.svg.append('g')
         .attr('class', 'y-axis axis');
-
-    vis.addX
-        // .transition().duration(1000)
-        .call(vis.xAxis); // need to add the transition
-
-    vis.addY
-        // .transition().duration(1000)
-        .call(vis.yAxis); // need to add the transition
-        // .call(customYAxis);
-
-    // MAY TRY DIFFERENT TYPE OF LINE GRAPH (ONES WITH HORIZONTAL LINES)
-
-    // function customYAxis(d) {
-    //     d.call(vis.yAxis);
-    //     d.select(".domain")
-    //         .remove();
-    //     d.selectAll(".tick:not(:first-of-type) line")
-    //         // .attr("stroke", "#777")
-    //         .attr("stroke-dasharray", "2,2");
-    //     // vis.g.selectAll(".tick text")
-    //     //     .attr("x", 4)
-    //     //     .attr("dy", -4);
-    // }
 
 
     // adding labels
@@ -170,23 +62,11 @@ costBenVis.prototype.initVis = function() {
         .attr('class', 'x-label');
 
     vis.yLabel = d3.select('#svg-cb').append('text')
-        .text("Mexican Peso ('000)")
-        .attr('x', -200)
-        .attr('y', vis.margin.left-40)
+        .text("Mexican Peso (million)")
+        .attr('x', -50)
+        .attr('y', vis.margin.left-60)
         .attr('class', 'y-label');
 
-    // adding title
-    // vis.title = d3.select("#svg-cb").append('text')
-    //     .text('COST/BENEFIT PROJECTION')
-    //     .attr('x', vis.width/2 - 60)
-    //     .attr('y', 30)
-    //     .attr('class', 'title');
-
-    // vis.subtitle = d3.select("#svg-cb").append('text')
-    //     .text('You may adjust the assumptions used in our estimates below.')
-    //     .attr('x', vis.width/2-80)
-    //     .attr('y', 30+18)
-    //     .attr('class', 'subtitle');
 
     // legends
     vis.legendCost = d3.select('#svg-cb').append('circle')
@@ -213,44 +93,369 @@ costBenVis.prototype.initVis = function() {
         .attr('y', vis.height + vis.margin.top +vis.margin.bottom*4/5+5)
         .attr('class', 'legend-text');
 
-    // adding sliders
+    vis.addNote = d3.select('#svg-cb').append('text')
+        .text('HOVER OVER DATA POINTS FOR MORE DETAILS.')
+        .attr('x', (vis.width-vis.margin.left-vis.margin.right)/2+120)
+        .attr('y', vis.margin.top-10)
+        .attr('class', 'channel-note')
+        .attr('text-anchor', 'middle');
 
-    // Transfer amount
-        // add scale for transfer amount slider
-        // vis.transferScale = d3.scaleLinear().domain([0,100]).range([0, vis.width/2]);
+    // adding lines
+    vis.addLineBen = vis.svg.append('path')
+        .attr("class", "line line-ben");
 
-        // vis.transferSlider = d3.slide().axis(d3.svg.axis().orient("top").ticks(5)); //apparently this is not a d3 function, check v4 new command
-            // vis.svg.append("g")
-            // .attr("class", "slider");
-            // .attr("transform", "translate(" + margin.left + "," + height / 2 + ")");
+    vis.addLineCost = vis.svg.append('path')
+        .attr('class', 'line line-cost');
 
-        // adding slider titles
-        // vis.transferSliderTitle = d3.select("#svg-cb").append("text")
-        //     .text("CHANGE IN TRANSFER LEVEL (%)")
-        //     .attr('x', vis.margin.left).attr('y', 20 + 55)
-        //     .attr('class', 'slider-text');
 
-    // unemployment
-        // title
-        // vis.umeployment = d3.select("#svg-cb").append("text")
-        //     .text("YOUTH UNEMPLOYMENT RATE (%)")
-        //     .attr('x', vis.margin.left).attr('y', 20 + 80)
-        //     .attr('class', 'slider-text');
-
-    // entering labor market
-        // title
-        // vis.enterLabor = d3.select("#svg-cb").append("text")
-        //     .text("PROPORTION OF YOUTH ENTERING LABOR MARKET (%)")
-        //     .attr('x', vis.margin.left).attr('y', 20 + 105)
-        //     .attr('class', 'slider-text');
-
+    vis.wrangleData();
 }
 
 
 costBenVis.prototype.wrangleData = function() {
+    var vis = this;
 
+    vis.unemploy = document.getElementById("sliderUnemVal").textContent;
+    vis.transferChange = document.getElementById("sliderTransferVal").textContent;
+    vis.numYouth = document.getElementById("sliderNumYouthVal").textContent;
+
+    console.log(vis.unemploy);
+    console.log(vis.transferChange);
+    console.log(vis.numYouth);
+
+
+    // generic variables for the estimation
+    var annualYear = [0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
+        cumulativeYear = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12],
+        totalBen = 6000000,
+        youthEnterLaborRate = 1 / 18,
+        firstJobImpact = 0.86,
+        currentJobImpact = 0.95;
+
+    // cost
+    var currentTransfer = 335,
+        newTransfer = currentTransfer * vis.transferChange / 100,
+        newAnnualTransfer = newTransfer * 12,
+        newAnnualTransferTotal = newAnnualTransfer * totalBen;
+
+    console.log(newTransfer);
+    console.log(newAnnualTransfer);
+    console.log(newAnnualTransferTotal);
+
+    var cumCostHH = cumulativeYear.map(function (d) {
+        return d * newAnnualTransfer;
+    });
+
+    vis.annualCostTotal = annualYear.map(function (d) {
+        return Math.round(d * newAnnualTransferTotal / 1000000);
+    });
+
+    vis.cumCostTotal = cumulativeYear.map(function (d) {
+        return Math.round(d * newAnnualTransferTotal / 1000000);
+    });
+
+    console.log(cumCostHH);
+    console.log(vis.annualCostTotal);
+    console.log(vis.cumCostTotal);
+
+
+    // benefits of the first job
+    // ln(monthly wage of first job)  = 0.86*ln(total lifetime transfer amount)
+    // making the calculation an array;
+    var annualBenFirstTotal = cumCostHH.map(function (d) {
+        return Math.round((Math.round(Math.exp(firstJobImpact * Math.log(d)) * 12) * vis.numYouth * totalBen) * (100 - vis.unemploy) / 100 * youthEnterLaborRate);
+    });
+
+    var cumBenFirstTotal = [];
+    annualBenFirstTotal.reduce(function (a, b, i) {
+        return cumBenFirstTotal[i] = a + b;
+    }, 0);
+
+    console.log(annualBenFirstTotal);
+    console.log(cumBenFirstTotal);
+
+
+    // benefits of the current job
+    // ln(monthly wage of current job)  = 0.95*ln(total lifetime transfer amount)
+    var newCostHH = cumCostHH;
+    newCostHH.unshift(0);
+    newCostHH.filter(function (d, i) {
+        return i = 11;
+    });
+    console.log(newCostHH);
+
+    var annualBenCurrentTotal = newCostHH.map(function (d) {
+        return Math.round((Math.round(Math.exp(currentJobImpact * Math.log(d)) * 12) * vis.numYouth * totalBen) * (100 - vis.unemploy) / 100 * youthEnterLaborRate);
+    });
+
+    var cumBenCurrentTotal = [];
+    annualBenCurrentTotal.reduce(function (a, b, i) {
+        return cumBenCurrentTotal[i] = a + b;
+    }, 0);
+
+    console.log(annualBenCurrentTotal);
+    console.log(cumBenCurrentTotal);
+
+
+    // combining first and current job Ben
+    vis.annualBen = annualBenFirstTotal.map(function (d, i) {
+        return Math.round((d + annualBenCurrentTotal[i]) / 1000000);
+    });
+
+    vis.cumBen = cumBenFirstTotal.map(function (d, i) {
+        return Math.round((d + cumBenCurrentTotal[i]) / 1000000);
+    });
+
+    console.log(vis.annualBen);
+    console.log(vis.cumBen);
+
+
+    // identifying number of year to break even
+    vis.breakEven = vis.cumBen.map(function(d, i){
+        if (vis.cumBen[i] >vis.cumCostTotal[i]) return 1;
+        else return 0;
+    });
+    console.log(vis.breakEven);
+
+    vis.breakEvenYear = vis.breakEven.indexOf(1);
+    console.log(vis.breakEvenYear);
+
+    vis.updateVis();
 }
 
 costBenVis.prototype.updateVis = function() {
+    var vis= this;
+
+    console.log(vis.cumBen);
+    console.log(vis.cumCostTotal);
+
+
+    //updating the domain for x scale
+    vis.x.domain([0, 12]);
+
+
+    //updating the domain for y scale
+    vis.yMax = d3.max(vis.cumBen, function(d) { return d; });
+    vis.y.domain([0, vis.yMax*1.1]);
+
+    vis.addX.call(vis.xAxis);
+    vis.addY.transition().duration(1200).call(vis.yAxis);
+
+
+    //drawing the cumulative benefits lines
+    vis.lineBen = d3.line()
+        .x(function(d, i){ return vis.x(i); })
+        .y(function(d){ return vis.y(d); })
+        .curve(d3.curveLinear);
+
+    vis.addLineBen
+        .transition().duration(1500)
+        .attr('d', vis.lineBen(vis.cumBen));
+
+    vis.addLineBen.exit().remove();
+
+
+    //drawing the cumulative cost lines
+    vis.lineCost = d3.line()
+        .x(function(d, i){ return vis.x(i); })
+        .y(function(d){ return vis.y(d); })
+        .curve(d3.curveLinear);
+
+    vis.addLineCost
+        .transition().duration(1500)
+        .attr('d', vis.lineCost(vis.cumCostTotal));
+
+    vis.addLineCost.exit().remove();
+
+
+    // adding data points
+    vis.pointCost = vis.svg.selectAll('.point-cost')
+        .data(vis.cumCostTotal);
+
+    vis.pointCost.enter()
+        .append('circle')
+        .merge(vis.pointCost)
+        // .transition().duration(1000)
+        .attr('class', 'point point-cost')
+        .attr('r', 4)
+        .attr('cx', function(d, i){
+            return vis.x(i);
+        })
+        .attr('cy', function(d){
+            return vis.y(d);
+        })
+        .attr('title', function(d, i){
+            return "<b>Cumulative Cost</b>:<br> " + d.toLocaleString() +" million MXN " +
+                "<br><b>Year</b>: " + i;
+        });
+
+    vis.pointCost
+        .on('mouseover', mouseOver)
+        .on('mouseout', mouseOut);
+
+    vis.pointBen = vis.svg.selectAll('.point-ben')
+        .data(vis.cumBen);
+
+    vis.pointBen.enter()
+        .append('circle')
+        .merge(vis.pointBen)
+        // .transition().duration(1000)
+        .attr('class', 'point point-ben')
+        .attr('r', 4)
+        .attr('cx', function(d, i){
+            return vis.x(i);
+        })
+        .attr('cy', function(d){
+            return vis.y(d);
+        })
+        .attr('title', function(d, i){
+            return "<b>Cumulative Benefits</b>: <br> " + d.toLocaleString() +" million MXN " +
+                "<br><b>Year</b>: " + i;
+        });
+
+    vis.pointBen
+        .on('mouseover', mouseOver)
+        .on('mouseout', mouseOut);
+
+    // initializing tool tips
+    $('.point-ben').tooltipsy({
+        offset: [10, -3],
+        css: {
+            'padding': '10px',
+            'max-width': '200px',
+            'color': '#ffffff',
+            'background-color': 'rgba(21, 40, 100, 0.6)',
+            'border': '0.1px solid #656565',
+            'border-radius': '10px',
+            '-moz-box-shadow': '0 0 10px rgba(100, 100, 100, .6)',
+            '-webkit-box-shadow': '0 0 10px rgba(100, 100, 100, .5)',
+            'box-shadow': '0 0 10px rgba(100, 100, 100, .5)',
+            'text-shadow': 'none'
+        }
+    });
+
+    $('.point-cost').tooltipsy({
+        offset: [10, -3],
+        css: {
+            'padding': '10px',
+            'max-width': '200px',
+            'color': '#ffffff',
+            'background-color': 'rgba(139, 41, 31, 0.7)',
+            'border': '0.1px solid #656565',
+            'border-radius': '10px',
+            '-moz-box-shadow': '0 0 10px rgba(100, 100, 100, .5)',
+            '-webkit-box-shadow': '0 0 10px rgba(100, 100, 100, .5)',
+            'box-shadow': '0 0 10px rgba(100, 100, 100, .5)',
+            'text-shadow': 'none'
+        }
+    });
+
+    function mouseOver() {
+        d3.select(this).transition().duration(100)
+            .attr("r", 6);
+    }
+
+    function mouseOut(){
+        d3.select(this).transition().duration(100)
+            .attr('r', 4);
+    }
 
 }
+
+
+costBenVis.prototype.initNumbers = function() {
+    var vis = this;
+
+    vis.start = 0,
+        vis.duration = 5000,
+        vis.endCost = [vis.cumCostTotal],
+        vis.endBen = [vis.cumBen];
+
+    vis.nbHeight = 60, vis.nbWidth = 290;
+
+    // total-cost
+    vis.svgTotalCost = d3.select('#total-cost').append('svg')
+        .attr('id', 'svg-cost').attr('class', 'svg-nb')
+        .attr('height', vis.nbHeight).attr('width', vis.nbWidth)
+        .attr('align', 'center');
+
+
+    // total-ben
+    vis.svgTotalBen = d3.select('#total-ben').append('svg')
+        .attr('id', 'svg-ben').attr('class', 'svg-nb')
+        .attr('height', vis.nbHeight).attr('width', vis.nbWidth)
+        .attr('align', 'center');
+
+
+    // number of year to break even
+    vis.svgYears = d3.select('#cb-years').append('svg')
+        .attr('id', 'svg-years').attr('class', 'svg-nb')
+        .attr('height', vis.nbHeight).attr('width', vis.nbWidth)
+        .attr('align', 'center');
+
+    vis.updateNum();
+}
+
+costBenVis.prototype.hideVis = function() {
+    $('.cb-numbers').hide();
+    $('.svg-nb').remove();
+}
+
+costBenVis.prototype.updateNum = function() {
+    var vis = this,
+        format = d3.format(",d");
+
+    vis.svgTotalCost.selectAll("#cb-cost")
+        .data(vis.endCost).enter()
+        .append('text').text(vis.start)
+        .attr('id', 'cb-cost').attr('class', 'cb-numbers')
+        .attr('x', 70).attr('y', vis.nbHeight*2/3)
+        .transition().duration(2000)
+        .on('start', function repeat(){
+            d3.active(this)
+                .tween("text", function(d){
+                    var that = d3.select(this),
+                        i = d3.interpolateNumber(that.text(), d[12]);
+                    return function(t) {that.text(format(i(t))); };
+                })
+                .transition()
+                .delay(1500);
+        });
+
+    vis.svgTotalBen.selectAll("#cb-ben")
+        .data(vis.endBen).enter()
+        .append('text').text(vis.start)
+        .attr("id", "cb-ben").attr('class', 'cb-numbers')
+        .attr('x', 70).attr('y', vis.nbHeight*2/3)
+        .transition().duration(2000)
+        .on('start', function repeat(){
+            d3.active(this)
+                .tween("text", function(d){
+                    var that = d3.select(this),
+                        i = d3.interpolateNumber(that.text(), d[12]);
+                    return function(t) {that.text(format(i(t))); };
+                })
+                .transition()
+                .delay(1500);
+        });
+
+    vis.svgYears.selectAll("#cb-years")
+        .data(vis.breakEven).enter()
+        .append('text').text(vis.start)
+        .attr("id", "cb-years").attr('class', 'cb-numbers')
+        .attr('x', 130).attr('y', vis.nbHeight*2/3)
+        .transition().duration(2000)
+        .on('start', function repeat(){
+            d3.active(this)
+                .tween("text", function(d, i){
+                    console.log(d);
+                    var that = d3.select(this),
+                        i = d3.interpolateNumber(that.text(), vis.breakEvenYear);
+                    return function(t) {that.text(format(i(t))); };
+                })
+                .transition()
+                .delay(1500);
+        });
+
+}
+
