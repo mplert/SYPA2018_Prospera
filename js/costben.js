@@ -8,7 +8,6 @@
 
 costBenVis = function(_parentElement) {
     this.parentElement = _parentElement;
-
     this.initVis();
     this.initNumbers();
 }
@@ -34,11 +33,9 @@ costBenVis.prototype.initVis = function() {
 
     // adding axes and scales for the line graph
     vis.x = d3.scaleLinear()
-        // .domain([0, 12])
         .range([0, vis.width]);
 
     vis.y = d3.scaleLinear()
-        // .domain([0, 60000])
         .range([vis.height, 0]);
 
     vis.xAxis = d3.axisBottom().scale(vis.x)

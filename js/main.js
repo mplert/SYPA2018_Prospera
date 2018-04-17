@@ -11,7 +11,6 @@ var costBen, channel;
 
 /* DATA for COST-BEN vis*/
 
-
 // slider for youth unemployment
     $("#sliderUnem").slider();
     $("#sliderUnem").on("slide", function (slideEvt) {
@@ -35,14 +34,12 @@ var costBen, channel;
     });
 
 // adding title to the text
-// slider 1 change in transfer
-$('#slider-transfer').attr('title', "Percentage change in nutrition component of the transfer dictates the cost and the benefits on youth's labor productivity.");
-$('#slider-unem').attr('title', 'Youth unemployment rate (%) dictates how many youths could get a job.');
-$('#slider-youth').attr('title', 'The average number of youths in the household is 3.4. ' +
-    'For conservative estimates, we assume that each household has 1 youth who will recieve benefits from the change in transfer amount.')
-
+    $('#slider-transfer').attr('title', "Percentage change in nutrition component of the transfer dictates the cost and the benefits on youth's labor productivity.");
+    $('#slider-unem').attr('title', 'Youth unemployment rate (%) dictates how many youths could get a job.');
+    $('#slider-youth').attr('title', 'The average number of youths in the household is 3.4. ' +
+        'For conservative estimates, we assume that each household has 1 youth who will recieve benefits from the change in transfer amount.')
 
 // creating instances for js file
-costBen = new costBenVis("#costben-vis");
+    costBen = new costBenVis("#costben-vis");
 
 
