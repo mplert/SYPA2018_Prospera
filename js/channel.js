@@ -95,7 +95,7 @@ channelVis.prototype.drawShapes = function(){
         })
         .attr('title', function(d,i){
             if (i==0) {
-                return "<b>INCENTIVE EFFECTS</b><br> Program conditions incentivize increased investment in children.";
+                return "<b>INCENTIVE EFFECTS</b> <br> Program conditions incentivize increased investment in children.";
             } if (i==1) {
                 return "<b>INCOME EFFECTS</b> <br>Additional household income provides more resources to invest in children.";
             } else {
