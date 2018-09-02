@@ -20,12 +20,12 @@ channelVis.prototype.initVis = function(){
 
     vis.svg = d3.select('#channel-vis')
         .append('svg')
-            .attr('width', vis.width + vis.margin.left + vis.margin.right)
-            .attr('height', vis.height + vis.margin.top + vis.margin.bottom)
-            .attr('align', 'center')
-            .attr('id', 'svg-channel')
+        .attr('width', vis.width + vis.margin.left + vis.margin.right)
+        .attr('height', vis.height + vis.margin.top + vis.margin.bottom)
+        .attr('align', 'center')
+        .attr('id', 'svg-channel')
         .append('g')
-            .attr('transform', 'translate('+ vis.margin.left +',' + vis.margin.top +')');
+        .attr('transform', 'translate('+ vis.margin.left +',' + vis.margin.top +')');
 
     vis.drawShapes();
 }
@@ -51,9 +51,9 @@ channelVis.prototype.drawShapes = function(){
     vis.channel.enter()
         .append('a')
         .attr('xlink:href', function(d, i){
-            if(i==0) { return "channela.html";}
-            if(i==1) { return "channelb.html";}
-            else { return "channelc.html";}
+            if(i==0) { return "channela_SP.html";}
+            if(i==1) { return "channelb_SP.html";}
+            else { return "channelc_SP.html";}
         })
         .attr('target', "_blank")
         .append('rect')
@@ -95,11 +95,11 @@ channelVis.prototype.drawShapes = function(){
         })
         .attr('title', function(d,i){
             if (i==0) {
-                return "<b>INCENTIVE EFFECTS</b> <br> Program conditions incentivize increased investment in children.";
+                return "<b>Efectos en los incentivos</b> <br> Program conditions incentivize increased investment in children.";
             } if (i==1) {
-                return "<b>INCOME EFFECTS</b> <br>Additional household income provides more resources to invest in children.";
+                return "<b>Efectos en el ingreso</b> <br>Additional household income provides more resources to invest in children.";
             } else {
-                return "<b>SUPPLEMENTAL EFFECTS</b> <br> Supplemental programs increase young adults' productivity.";
+                return "<b>Programas Suplementarios</b> <br> Supplemental programs increase young adults' productivity.";
             }
         });
 
@@ -107,7 +107,7 @@ channelVis.prototype.drawShapes = function(){
     var channelAData = [0, 1],
         smallBoxWidth = 130,
         smallBoxHeight = 50,
-        smallBoxGap = 20,
+        smallBoxGap = 25,
         verticalGap = 15;
 
     vis.channelA = vis.svg.selectAll ('.channel-a').data(channelAData);
@@ -115,25 +115,25 @@ channelVis.prototype.drawShapes = function(){
     vis.channelA.enter().append('rect')
         .attr('class', 'channel-a')
         .attr('x', function(d,i){
-            return vis.width/3 + 30 + smallBoxGap + (smallBoxWidth+smallBoxGap)*i;
+            return vis.width/3 + 18 + smallBoxGap + (smallBoxWidth+smallBoxGap)*i;
         })
         .attr('y', (vis.margin.top +60 +smallBoxGap) )
-        .attr('width', smallBoxWidth).attr('height', smallBoxHeight)
+        .attr('width', smallBoxWidth+20).attr('height', smallBoxHeight)
         .attr('rx', 10).attr('ry', 10)
         .attr('title', function(d,i) {
-            return "<b>INCENTIVE EFFECTS</b> <br> Program conditions incentivize increased investment in children.";
+            return "<b>Efectos en los incentivos</b> <br> Program conditions incentivize increased investment in children.";
         });
 
     vis.channelA.enter().append('rect')
         .attr('class', 'channel-a')
         .attr('x', function(d,i){
-            return vis.width/3 + 30 + smallBoxGap + (smallBoxWidth+smallBoxGap)*i;
+            return vis.width/3 + 18 + smallBoxGap + (smallBoxWidth+smallBoxGap)*i;
         })
         .attr('y', (vis.margin.top +60 +smallBoxGap + verticalGap + smallBoxHeight))
-        .attr('width', smallBoxWidth).attr('height', smallBoxHeight)
+        .attr('width', smallBoxWidth+20).attr('height', smallBoxHeight)
         .attr('rx', 10).attr('ry', 10)
         .attr('title', function(d,i) {
-            return "<b>INCENTIVE EFFECTS</b> <br> Program conditions incentivize increased investment in children.";
+            return "<b>Efectos en los incentivos</b> <br> Program conditions incentivize increased investment in children.";
         });
 
     // channel B
@@ -154,7 +154,7 @@ channelVis.prototype.drawShapes = function(){
         .attr('width', channelBWidth).attr('height', smallBoxHeight)
         .attr('rx', 10).attr('ry', 10)
         .attr('title', function(d,i) {
-            return "<b>INCOME EFFECTS</b> <br>Additional household income provides more resources to invest in children.";
+            return "<b>Efectos en el ingreso</b> <br>Additional household income provides more resources to invest in children.";
         });
 
     vis.channelB.enter().append('rect')
@@ -168,9 +168,8 @@ channelVis.prototype.drawShapes = function(){
         .attr('width', channelBWidth+50).attr('height', smallBoxHeight)
         .attr('rx', 10).attr('ry', 10)
         .attr('title', function(d,i) {
-            return "<b>INCOME EFFECTS</b> <br>Additional household income provides more resources to invest in children.";
+            return "<b>Efectos en el ingreso</b> <br>Additional household income provides more resources to invest in children.";
         });
-
     // channel C
     vis.channelC = vis.svg.append('rect')
         .attr('class', 'channel-c')
@@ -180,7 +179,7 @@ channelVis.prototype.drawShapes = function(){
         .attr('rx', 15).attr('ry', 15)
         .style('fill', "#DDA711")
         .attr('title', function(d, i){
-            return "<b>SUPPLEMENTAL EFFECTS</b> <br> Supplemental programs increase young adults' productivity.";
+            return "<b>Programas Suplementarios</b> <br> Supplemental programs increase young adults' productivity.";
         });
 
 
@@ -228,76 +227,79 @@ channelVis.prototype.drawShapes = function(){
 
     // titles for channels
     vis.channelATitle = vis.svg.append('text')
-        .text("Channel A: Incentive Effects")
+        .text("Canal A: Efectos en los incentivos")
         .attr('x', vis.width/2).attr('y', vis.margin.top +60-10 )
         .attr("class", "channel-a-title title");
 
     vis.channelBTitle = vis.svg.append('text')
-        .text("Channel B: Income Effects")
+        .text("Canal B: Efectos en el ingreso")
         .attr('x', vis.width/2).attr('y', vis.margin.top +60-10+ (vis.height/4 + gap))
         .attr("class", "channel-b-title");
 
     vis.channelCTitle = vis.svg.append('text')
-        .text("Channel C: Supplementary Programs")
+        .text("Canal C: Programas Suplementarios")
         .attr('x', vis.width/2).attr('y', vis.margin.top +60-10 +(vis.height/4 + gap)*2)
         .attr("class", "channel-c-title");
 
 
     // texts for channels
     vis.channelAText = vis.svg
-        .append('text').text('Health')
-            .attr('class', 'channel-subtext')
-            .attr('x', (vis.width/3 + 30 +smallBoxGap +smallBoxWidth/2))
-            .attr('y', (vis.margin.top +60 +smallBoxGap + 32))
-        .append('tspan').text('Nutrition')
-            .attr('x', (vis.width/3 + 20 +smallBoxGap*2 + smallBoxWidth*1.5+10))
-            .attr('y', (vis.margin.top +60 +smallBoxGap + 32))
-        .append('tspan').text('Education')
-            .attr('x', (vis.width/3 + 30 +smallBoxGap +smallBoxWidth/2))
-            .attr('y', (vis.margin.top +60 +smallBoxGap + 32 + verticalGap +smallBoxHeight))
-        .append('tspan').text('Other Trainings')
-            .attr('class', 'channel-subtext2')
-            .attr('x', (vis.width/3 + 20 +smallBoxGap*2 + smallBoxWidth*1.5+10))
-            .attr('y', (vis.margin.top +60 +smallBoxGap + 32 + verticalGap +smallBoxHeight));
+        .append('text').text('La salud y bienestar')
+        .attr('class', 'channel-subtext2')
+        .attr('x', (vis.width/3 + 30 +smallBoxGap +smallBoxWidth/2))
+        .attr('y', (vis.margin.top +60 +smallBoxGap + 32))
+        .append('tspan').text('La alimentación')
+        .attr('x', (vis.width/3 + 20 +smallBoxGap*2 + smallBoxWidth*1.5+10))
+        .attr('y', (vis.margin.top +60 +smallBoxGap + 32))
+        .append('tspan').text('La educación')
+        .attr('x', (vis.width/3 + 30 +smallBoxGap +smallBoxWidth/2))
+        .attr('y', (vis.margin.top +60 +smallBoxGap + 32 + verticalGap +smallBoxHeight))
+        .append('tspan').text('Otros entrenamientos')
+        // .attr('class', 'channel-subtext2')
+        .attr('x', (vis.width/3 + 20 +smallBoxGap*2 + smallBoxWidth*1.5+10))
+        .attr('y', (vis.margin.top +60 +smallBoxGap + 32 + verticalGap +smallBoxHeight));
 
     vis.channelBText = vis.svg
-        .append('text').text("Income")
-            .attr('class','channel-subtext')
-            .attr('x', vis.width/3 + 30 + channelBWidth/2)
-            .attr('y', (vis.margin.top +65 +smallBoxGap + vis.height/4 + gap +30))
-        .append('tspan').text("Income")
-            .attr('x', vis.width/3 + 30 + channelBWidth/2)
-            .attr('y', (vis.margin.top +65 +smallBoxGap + vis.height/4 + gap + (smallBoxHeight + verticalGap) +30));
+        .append('text').text("Ingresos")
+        .attr('class','channel-subtext')
+        .attr('x', vis.width/3 + 30 + channelBWidth/2)
+        .attr('y', (vis.margin.top +65 +smallBoxGap + vis.height/4 + gap +30))
+        .append('tspan').text("Ingresos")
+        .attr('x', vis.width/3 + 30 + channelBWidth/2)
+        .attr('y', (vis.margin.top +65 +smallBoxGap + vis.height/4 + gap + (smallBoxHeight + verticalGap) +30));
 
     vis.channelBSubtext = vis.svg
-        .append('text').text("Health, Nutrition")
-            .attr('class', 'channel-subtext3')
-            .attr('x', (vis.width/3 + 30 + channelBWidth +120))
-            .attr('y', (vis.margin.top +65 +smallBoxGap + vis.height/4 + gap +22))
-        .append('tspan').text("or Education")
-            .attr('class', 'channel-subtext3')
-            .attr('x', vis.width/3 + 30 + channelBWidth + 120)
-            .attr('y', (vis.margin.top +65 +smallBoxGap + vis.height/4 + gap +22+15))
-        .append('tspan').text("Others including migration,")
-            .attr('class', 'channel-subtext3')
-            .attr('x', vis.width/3 + 30 + channelBWidth + 120)
-            .attr('y', (vis.margin.top +65 +smallBoxGap + vis.height/4 + gap + (smallBoxHeight + verticalGap) +22))
-        .append('tspan').text("reduced stress, etc.")
-            .attr('class', 'channel-subtext3')
-            .attr('x', vis.width/3 + 30 + channelBWidth + 120)
-            .attr('y', (vis.margin.top +65 +smallBoxGap + vis.height/4 + gap + (smallBoxHeight + verticalGap) +22+15));
+        .append('text').text("Salud y bienestar, la nutrición")
+        .attr('class', 'channel-subtext3')
+        .attr('x', (vis.width/3 + 30 + channelBWidth +120))
+        .attr('y', (vis.margin.top +65 +smallBoxGap + vis.height/4 + gap +22))
+        .append('tspan').text("o la educación")
+        .attr('class', 'channel-subtext3')
+        .attr('x', vis.width/3 + 30 + channelBWidth + 120)
+        .attr('y', (vis.margin.top +65 +smallBoxGap + vis.height/4 + gap +22+15))
+        .append('tspan').text("Otros, incluyendo emigración,")
+        .attr('class', 'channel-subtext3')
+        .attr('x', vis.width/3 + 30 + channelBWidth + 120)
+        .attr('y', (vis.margin.top +65 +smallBoxGap + vis.height/4 + gap + (smallBoxHeight + verticalGap) +22))
+        .append('tspan').text("estrés, etcétera")
+        .attr('class', 'channel-subtext3')
+        .attr('x', vis.width/3 + 30 + channelBWidth + 120)
+        .attr('y', (vis.margin.top +65 +smallBoxGap + vis.height/4 + gap + (smallBoxHeight + verticalGap) +22+15));
 
     vis.channelCText = vis.svg
-        .append('text').text("Supplementary programs offered via")
-            .attr('class', 'channel-subtext')
-            .attr('x', vis.width/2)
-            .attr('y', vis.height*4/5)
-        .append('tspan').text("other organizations (entrepreneurship,")
-            .attr('x', vis.width/2)
-            .attr('y', vis.height*4/5 +25)
-        .append('tspan').text("job matching programs)")
-            .attr('x', vis.width/2)
-            .attr('y', vis.height*4/5 +25*2);
+        .append('text').text("Programas suplementarios ofrecidos a través de")
+        .attr('class', 'channel-subtext2')
+        .attr('x', vis.width/2)
+        .attr('y', vis.height*4/5-5)
+        .append('tspan').text("otras organizaciones (para promover iniciativas")
+        .attr('x', vis.width/2)
+        .attr('y', vis.height*4/5 +20-5)
+        .append('tspan').text("empresariales o ayudar en la búsqueda o")
+        .attr('x', vis.width/2)
+        .attr('y', vis.height*4/5 +20*2-5)
+        .append('tspan').text("colocación de un trabajo)")
+        .attr('x', vis.width/2)
+        .attr('y', vis.height*4/5 +20*3-5);
 
 
     // source circles
@@ -317,29 +319,29 @@ channelVis.prototype.drawShapes = function(){
         .attr('class', 'source');
 
     vis.prosperaText = vis.svg
-        .append('text').text("Prospera")
-            .attr('class', 'channel-text')
-            .attr('x', vis.margin.left + radius +20)
-            .attr('y', vis.margin.top + vis.height/2-10)
-        .append('tspan').text("Program")
-            .attr('class', 'channel-text')
-            .attr('x', vis.margin.left + radius +20)
-            .attr('y', vis.margin.top + vis.height/2 + 30);
+        .append('text').text("Programa")
+        .attr('class', 'channel-text')
+        .attr('x', vis.margin.left + radius +20)
+        .attr('y', vis.margin.top + vis.height/2-10)
+        .append('tspan').text("Prospera")
+        .attr('class', 'channel-text')
+        .attr('x', vis.margin.left + radius +20)
+        .attr('y', vis.margin.top + vis.height/2 + 30);
 
     vis.productText = vis.svg
-        .append('text').text("Labor")
-            .attr('class', 'channel-text')
-            .attr('x', vis.margin.left + channelArea +radius +20)
-            .attr('y', vis.margin.top + vis.height/2-10)
-        .append('tspan').text("Productivity")
-            .attr('class', 'channel-text')
-            .attr('x', vis.margin.left + channelArea+radius +20)
-            .attr('y', vis.margin.top + vis.height/2 + 30);
+        .append('text').text("Productividad")
+        .attr('class', 'channel-text')
+        .attr('x', vis.margin.left + channelArea +radius +20)
+        .attr('y', vis.margin.top + vis.height/2-10)
+        .append('tspan').text("Laboral ")
+        .attr('class', 'channel-text')
+        .attr('x', vis.margin.left + channelArea+radius +20)
+        .attr('y', vis.margin.top + vis.height/2 + 30);
 
 
     // notes
     vis.addNotes = vis.svg.append('text')
-        .text('HOVER OVER EACH BOX FOR MORE DETAILS. CLICK EACH BOX FOR OUR FINDINGS FOR EACH CHANNEL.')
+        .text('COLOQUE EL CURSOR SOBRE CADA CAJA PARA MÁS DETALLES. HAGA CLICK EN CADA CAJA PARA VER NUESTRAS CONLUSIONES PARA CADA CANAL.')
         .attr('class', 'channel-note')
         .attr('x', vis.width/2)
         .attr('y', 0);
