@@ -95,11 +95,11 @@ channelVis.prototype.drawShapes = function(){
         })
         .attr('title', function(d,i){
             if (i==0) {
-                return "<b>Efectos en los incentivos</b> <br> Program conditions incentivize increased investment in children.";
+                return "<b>Efectos en los incentivos</b> <br>Las condiciones del programa incentivan más inversión en los niños.";
             } if (i==1) {
-                return "<b>Efectos en el ingreso</b> <br>Additional household income provides more resources to invest in children.";
+                return "<b>Efectos en el ingreso</b> <br>El ingreso familiar adicional genera más recursos para invertir en los niños.";
             } else {
-                return "<b>Programas Suplementarios</b> <br> Supplemental programs increase young adults' productivity.";
+                return "<b>Programas Suplementarios</b> <br>Los programas suplementarios aumentaron la productividad de los jóvenes.";
             }
         });
 
@@ -121,7 +121,7 @@ channelVis.prototype.drawShapes = function(){
         .attr('width', smallBoxWidth+20).attr('height', smallBoxHeight)
         .attr('rx', 10).attr('ry', 10)
         .attr('title', function(d,i) {
-            return "<b>Efectos en los incentivos</b> <br> Program conditions incentivize increased investment in children.";
+            return "<b>Efectos en los incentivos</b> <br> Las condiciones del programa incentivan más inversión en los niños.";
         });
 
     vis.channelA.enter().append('rect')
@@ -133,7 +133,7 @@ channelVis.prototype.drawShapes = function(){
         .attr('width', smallBoxWidth+20).attr('height', smallBoxHeight)
         .attr('rx', 10).attr('ry', 10)
         .attr('title', function(d,i) {
-            return "<b>Efectos en los incentivos</b> <br> Program conditions incentivize increased investment in children.";
+            return "<b>Efectos en los incentivos</b> <br> Las condiciones del programa incentivan más inversión en los niños.";
         });
 
     // channel B
@@ -154,7 +154,7 @@ channelVis.prototype.drawShapes = function(){
         .attr('width', channelBWidth).attr('height', smallBoxHeight)
         .attr('rx', 10).attr('ry', 10)
         .attr('title', function(d,i) {
-            return "<b>Efectos en el ingreso</b> <br>Additional household income provides more resources to invest in children.";
+            return "<b>Efectos en el ingreso</b> <br>El ingreso familiar adicional genera más recursos para invertir en los niños.";
         });
 
     vis.channelB.enter().append('rect')
@@ -168,7 +168,7 @@ channelVis.prototype.drawShapes = function(){
         .attr('width', channelBWidth+50).attr('height', smallBoxHeight)
         .attr('rx', 10).attr('ry', 10)
         .attr('title', function(d,i) {
-            return "<b>Efectos en el ingreso</b> <br>Additional household income provides more resources to invest in children.";
+            return "<b>Efectos en el ingreso</b> <br>El ingreso familiar adicional genera más recursos para invertir en los niños.";
         });
     // channel C
     vis.channelC = vis.svg.append('rect')
@@ -179,7 +179,7 @@ channelVis.prototype.drawShapes = function(){
         .attr('rx', 15).attr('ry', 15)
         .style('fill', "#DDA711")
         .attr('title', function(d, i){
-            return "<b>Programas Suplementarios</b> <br> Supplemental programs increase young adults' productivity.";
+            return "<b>Programas Suplementarios</b> <br>Los programas suplementarios aumentaron la productividad de los jóvenes.";
         });
 
 
